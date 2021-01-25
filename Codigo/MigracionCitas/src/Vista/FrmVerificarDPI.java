@@ -82,7 +82,7 @@ public class FrmVerificarDPI extends javax.swing.JInternalFrame {
     private void JBtnVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnVerificarActionPerformed
 
      try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/RENAP", "root", "");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/RENAP", "root", "");
             PreparedStatement pst = cn.prepareStatement("select * from Persona where Num_DPI = ?");
             pst.setString(1, JTxtNumDPI.getText().trim());
             
@@ -108,7 +108,7 @@ public class FrmVerificarDPI extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton JBtnVerificar;
+    public javax.swing.JButton JBtnVerificar;
     private javax.swing.JLabel JLabelTitulo;
     private javax.swing.JTextField JTxtNumDPI;
     // End of variables declaration//GEN-END:variables
