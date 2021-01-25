@@ -1,9 +1,6 @@
 package Modelo;
 
-/**
- *
- * @author diego
- */
+//TRABAJADA POR: NAYRE
 public class ConexionBANRURAL {
     
 }

@@ -4,12 +4,13 @@
  * and open the template in the editor.
  */
 package Vista;
-import Controlador.DPI;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author CarlosCastillo97
@@ -37,19 +38,23 @@ public class FrmVerificarDPI extends javax.swing.JInternalFrame {
         JBtnVerificar = new javax.swing.JButton();
 
         setClosable(true);
+        setMaximizable(true);
         setResizable(true);
         setTitle("Verificar DPI");
         setToolTipText("");
+        setVisible(true);
 
         JLabelTitulo.setText("Número de DPI");
 
         JBtnVerificar.setText("Verificar");
+
         JBtnVerificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         JBtnVerificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBtnVerificarActionPerformed(evt);
             }
         });
+
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,6 +86,7 @@ public class FrmVerificarDPI extends javax.swing.JInternalFrame {
 
     private void JBtnVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnVerificarActionPerformed
 
+
      try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/RENAP", "root", "");
             PreparedStatement pst = cn.prepareStatement("select * from Persona where Num_DPI = ?");
@@ -104,6 +110,7 @@ public class FrmVerificarDPI extends javax.swing.JInternalFrame {
         }catch (Exception e){
             
         }
+
     }//GEN-LAST:event_JBtnVerificarActionPerformed
 
 

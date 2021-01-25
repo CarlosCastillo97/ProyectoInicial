@@ -1,9 +1,6 @@
 package Controlador;
 
-/**
- *
- * @author diego
- */
+//TRABAJADA POR: NAYRE
 public class Boleta {
     
 }

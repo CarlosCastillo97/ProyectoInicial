@@ -6,8 +6,11 @@
 package Controlador;
 
 import Modelo.ConexionRENAP;
+<<<<<<< HEAD
 import Vista.FrmVerificarDPI;
 import java.text.SimpleDateFormat;
+=======
+>>>>>>> 6b9ded804188c16e0180b25b021f9e14e3e2da1e
 
 /**
  *
@@ -50,6 +53,7 @@ public class DPI {
     public String getApellido_M() {
         return Apellido_M;
     }
+<<<<<<< HEAD
 
     public void setApellido_M(String Apellido_M) {
         this.Apellido_M = Apellido_M;
@@ -72,3 +76,6 @@ public class DPI {
     }
 }
 
+=======
+}
+>>>>>>> 6b9ded804188c16e0180b25b021f9e14e3e2da1e
