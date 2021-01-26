@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import javax.swing.JOptionPane;
 import Vista.FrmVerificarDPI;
 import java.sql.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -34,6 +35,13 @@ public class ConexionRENAP {
         return con; 
 }
        public void MostrarUsuarios(String atributo){
+           DefaultTableModel modo = new DefaultTableModel();
+           modo.addColumn("DPI");
+           modo.addColumn("Nombres");
+           modo.addColumn("Apellido Paterno");
+           modo.addColumn("Apellido Materno");
+           modo.addColumn("Fecha de Nacimiento");
+           VR.Tabla.setModel(modo);
          String sql="SELECT * FROM Persona";
          if(atributo.equals("")){
              sql="SELECT * FROM Persona";
@@ -51,8 +59,9 @@ public class ConexionRENAP {
                  datos[2]=rs.getString(3);
                  datos[3]=rs.getString(4);
                  datos[4]=rs.getString(5);
+                 modo.addRow(datos);
                  JOptionPane.showMessageDialog(null, "El DPI Ingresado si existe");
-             }
+             } VR.Tabla.setModel(modo);
          }catch(SQLException ex){
              JOptionPane.showMessageDialog(null, "El dato no existe");
          }
