@@ -5,12 +5,6 @@
  */
 package Vista;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author CarlosCastillo97
@@ -35,7 +29,7 @@ public class FrmVerificarDPI extends javax.swing.JInternalFrame {
 
         JLabelTitulo = new javax.swing.JLabel();
         JTxtNumDPI = new javax.swing.JTextField();
-        JBtnVerificar = new javax.swing.JButton();
+        JBtnVerificarRENAP = new javax.swing.JButton();
 
         setClosable(true);
         setMaximizable(true);
@@ -46,15 +40,13 @@ public class FrmVerificarDPI extends javax.swing.JInternalFrame {
 
         JLabelTitulo.setText("Número de DPI");
 
-        JBtnVerificar.setText("Verificar");
-
-        JBtnVerificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        JBtnVerificar.addActionListener(new java.awt.event.ActionListener() {
+        JBtnVerificarRENAP.setText("Verificar");
+        JBtnVerificarRENAP.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        JBtnVerificarRENAP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBtnVerificarActionPerformed(evt);
+                JBtnVerificarRENAPActionPerformed(evt);
             }
         });
-
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -63,7 +55,7 @@ public class FrmVerificarDPI extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(JBtnVerificar)
+                    .addComponent(JBtnVerificarRENAP)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(JLabelTitulo)
                         .addComponent(JTxtNumDPI, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -77,46 +69,25 @@ public class FrmVerificarDPI extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JTxtNumDPI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JBtnVerificar)
+                .addComponent(JBtnVerificarRENAP)
                 .addContainerGap(98, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JBtnVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnVerificarActionPerformed
+    private void JBtnVerificarRENAPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnVerificarRENAPActionPerformed
 
-
-     try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/RENAP", "root", "");
-            PreparedStatement pst = cn.prepareStatement("select * from Persona where Num_DPI = ?");
-            pst.setString(1, JTxtNumDPI.getText().trim());
-            
-            ResultSet rs = pst.executeQuery();
-            
-            if(rs.next()){
-                JOptionPane.showMessageDialog(null,"El DPI es Correcto");
-                String RENAP_Nomb="", RENAP_ApeP="", RENAP_ApeM="", RENAP_DPI="";
-                RENAP_Nomb = (rs.getString("Nombres_Persona"));
-                RENAP_ApeP = (rs.getString("Apellido_Paterno"));
-                RENAP_ApeM = (rs.getString("Apellido_Materno"));
-                RENAP_DPI = (rs.getString("Num_DPI"));
-                
-            } else {
-                JOptionPane.showMessageDialog(null, "Usuario no registrado.");
-              
-            }
-            
-        }catch (Exception e){
-            
-        }
-
-    }//GEN-LAST:event_JBtnVerificarActionPerformed
+    }//GEN-LAST:event_JBtnVerificarRENAPActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton JBtnVerificar;
+    public static javax.swing.JButton JBtnVerificarRENAP;
     private javax.swing.JLabel JLabelTitulo;
-    private javax.swing.JTextField JTxtNumDPI;
+    public static javax.swing.JTextField JTxtNumDPI;
     // End of variables declaration//GEN-END:variables
+
+    public void setLocationRelativeTo(Object object) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

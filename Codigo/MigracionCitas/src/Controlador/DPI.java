@@ -5,77 +5,41 @@
  */
 package Controlador;
 
-import Modelo.ConexionRENAP;
-<<<<<<< HEAD
 import Vista.FrmVerificarDPI;
-import java.text.SimpleDateFormat;
-=======
->>>>>>> 6b9ded804188c16e0180b25b021f9e14e3e2da1e
+import Modelo.ConexionRENAP;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+//Carlos Castillo 
+public class DPI implements ActionListener{
+    
+    private ConexionRENAP mr;
+    private FrmVerificarDPI vr;
 
-/**
- *
-//realizado por Carlos Castillo (CarlosCastillo97)
- */
-public class DPI {
- private String Num_DPI;
-  private String Nombres_RENAP;
-  private String Apellido_M;
-  private String Apellido_P;
-  private SimpleDateFormat Fecha_Nac;
-  
-  public DPI(){     
-  } 
-  
-  public DPI(String Num_DPI, String Nombres_RENAP, String Apellido_M, String Apellido_P, SimpleDateFormat Fecha_Nac) {
-      this.Num_DPI = Num_DPI;
-      this.Nombres_RENAP = Nombres_RENAP;
-      this.Apellido_P = Apellido_P;
-      this.Apellido_M = Apellido_M;
-      this.Fecha_Nac = Fecha_Nac;
-  }
-
-    public String getNum_DPI() {
-        return Num_DPI;
+    public DPI(ConexionRENAP mr, FrmVerificarDPI vr) {
+        this.mr = mr;
+        this.vr = vr;
+        this.vr.JBtnVerificarRENAP.addActionListener(this);
     }
-
-    public void setNum_DPI(String Num_DPI) {
-        this.Num_DPI = Num_DPI;
+    
+    public void iniciar(){
+        vr.setTitle("Sistema con MVC");
+        vr.pack();
+        vr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        vr.setLocationRelativeTo (null);
+        vr.setVisible(true);
     }
-
-    public String getNombres_RENAP() {
-        return Nombres_RENAP;
-    }
-
-    public void setNombres_RENAP(String Nombres_RENAP) {
-        this.Nombres_RENAP = Nombres_RENAP;
-    }
-
-    public String getApellido_M() {
-        return Apellido_M;
-    }
-<<<<<<< HEAD
-
-    public void setApellido_M(String Apellido_M) {
-        this.Apellido_M = Apellido_M;
-    }
-
-    public String getApellido_P() {
-        return Apellido_P;
-    }
-
-    public void setApellido_P(String Apellido_P) {
-        this.Apellido_P = Apellido_P;
-    }
-
-    public SimpleDateFormat getFecha_Nac() {
-        return Fecha_Nac;
-    }
-
-    public void setFecha_Nac(SimpleDateFormat Fecha_Nac) {
-        this.Fecha_Nac = Fecha_Nac;
-    }
+    
+    @Override
+    public void actionPerformed(ActionEvent e){
+        if(vr.JBtnVerificarRENAP == e.getSource()){
+            try{
+                mr.MostrarUsuarios("");
+            }catch(Exception ex){
+               JOptionPane.showMessageDialog(null, "No se puede encontrar usuario");
+                    }
+                
+        }
 }
-
-=======
 }
->>>>>>> 6b9ded804188c16e0180b25b021f9e14e3e2da1e

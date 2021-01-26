@@ -1,67 +1,60 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Modelo;
 
-import java.sql.Connection;
+import com.mysql.jdbc.Connection;
+import java.net.URL;
 import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import Vista.FrmVerificarDPI;
+import java.sql.*;
+
 /**
  *
-//realizado por Carlos Castillo (CarlosCastillo97)
+//Carlos Castillo
  */
-
-
-//TRABAJADA POR: CARLOS
-
 public class ConexionRENAP {
-<<<<<<< HEAD
- public String driver = "com.mysql.jdbc.Driver";
- public String database = "RENAP";
- public String hostname = "localhost";
- public String port = "3306";
- public String url = "";
- public String username = "root";
- public String password = "";
- 
- public Connection getConectar() {
-     Connection conn = null;
-     
-     try {
-         url= "jdbc:mysql://" + hostname + ":" + port + "/" + database + "?useSSL=false";
-         
-         Class.forName(driver);
-         conn = DriverManager.getConnection(url, username, password);
-     } catch (ClassNotFoundException | SQLException e) {
-         System.out.println(e);
-     }
-             return conn;
+    Vista.FrmVerificarDPI VR = new Vista.FrmVerificarDPI();
+    Connection con;
+    Connection cn = GetConection();
 
- }
-}
-
-=======
-    private final String base = "RENAP";
-    private final String user = "root";
-    private final String password = "";
-    private final String url = "jdbc:mysql://localhost:3306" + base;
-    private Connection con = null;
-    
-    public Connection getConexion() 
-    {
+    public static Connection GetConection(){
+        Connection con = null;
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection(this.url, this.user, this.password);
-            
-            
-        } catch(SQLException e)
-        {
-                System.err.println(e);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ConexionRENAP.class.getName()).log(Level.SEVERE, null, ex);
+            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/RENAP", "root","");
+            JOptionPane.showMessageDialog(null,"Conexion Exitosa!");
+        } catch (Exception e) {
+            System.out.println(e);
         }
-        return con;
-    }
+        return con; 
 }
->>>>>>> 6b9ded804188c16e0180b25b021f9e14e3e2da1e
+       public void MostrarUsuarios(String atributo){
+         String sql="SELECT * FROM Persona";
+         if(atributo.equals("")){
+             sql="SELECT * FROM Persona";
+         }
+         else {
+             sql="SELECT * FROM Persona WHERE DPI_Num= ? ";
+         }
+         String datos[] = new String [5];
+         try {
+             Statement st = con.createStatement();
+             ResultSet rs = st.executeQuery(sql);
+             while (rs.next()){
+                 datos[0]=rs.getString(1);
+                 datos[1]=rs.getString(2);
+                 datos[2]=rs.getString(3);
+                 datos[3]=rs.getString(4);
+                 datos[4]=rs.getString(5);
+                 JOptionPane.showMessageDialog(null, "El DPI Ingresado si existe");
+             }
+         }catch(SQLException ex){
+             JOptionPane.showMessageDialog(null, "El dato no existe");
+         }
+       }
+}
